@@ -1,0 +1,124 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage, cite}
+\usepackage{amsmath, amsfonts, graphicx, float}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[bottom]{footmisc}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=Red,citecolor=Green]{hyperref}
+\renewcommand\abstractname{\textit{Introducción}}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{defi}[prop]{Definición}
+
+
+\author{Joel Antonio Vásquez}
+\title{Global IoT Sensor Network for Climate Resilience and Disaster Prevention (CRDP-Net)}
+% these are compressed lists to help fit into a 1 page limit %
+
+\begin{document}
+
+\maketitle
+
+\section{Problem Statement (Provided by the Coalition)}
+The coalition of top tech companies has identified a critical, world-class problem facing humanity: the inability to predict, mitigate, and respond to climate-induced natural disasters and resource scarcity at a global scale with sufficient speed, accuracy, and granularity. Climate change has intensified the frequency and severity of natural disasters—floods, wildfires, hurricanes, droughts—affecting billions of people, causing trillions in economic losses, and exacerbating resource shortages (e.g., water, energy, food). Current systems lack the infrastructure to collect and process massive, real-time IoT sensor data (5PB daily) across diverse global regions, integrate it with advanced climate models, and deliver actionable insights to stakeholders in near real-time. This gap results in delayed responses, inefficient resource allocation, and missed opportunities to save lives and protect ecosystems. The coalition demands a scalable, data-driven solution that leverages IoT, big data, AI, and cloud technologies to predict disasters, optimize resources, and enable rapid, coordinated responses worldwide.
+
+\section{Decomposition into Five Subproblems (As the Data Engineer)}
+As the data engineer leading this initiative, my role is to break down this massive, complex problem into manageable subproblems. This decomposition ensures we can tackle the challenge systematically, align with stakeholder needs, and deliver a solution that’s both technically feasible and impactful. I’ll divide the problem into five subproblems and explain the reasoning to the stakeholders. \\
+Five Subproblems \\
+\subsection{Subproblem 1} Real-Time Data Ingestion and Storage at Scale
+Description: Collect and store 5PB of daily IoT sensor data (readings, errors, performance, maintenance) from a global network of sensors, ensuring high availability, low latency, and fault tolerance.
+Why This Subproblem?: The foundation of the solution is ingesting and storing massive volumes of data in real-time. Without a robust ingestion and storage system, we can’t process or analyze the data to generate insights. This subproblem addresses the coalition’s concern about handling large-scale, diverse data sources.
+\section{Subproblem 2} Data Processing for Real-Time Insights
+Description: Process the 5PB daily data stream to compute real-time metrics (e.g., error rates, performance trends, maintenance needs) and integrate with climate models to predict disasters (e.g., floods, wildfires) with high accuracy.
+Why This Subproblem?: The coalition highlighted the need for speed and accuracy in predictions. Real-time processing is critical to deliver timely insights for disaster prevention. This subproblem focuses on transforming raw data into actionable metrics and predictions, addressing the gap in predictive capabilities.
+\subsection{Subproblem 3} Resource Optimization and Anomaly Detection
+Description: Analyze sensor data to optimize resource allocation (e.g., water, energy) and detect anomalies (e.g., sensor failures, unusual readings) that could indicate impending issues, ensuring efficient and sustainable resource use.
+Why This Subproblem?: The coalition noted inefficiencies in resource allocation and the need to address resource scarcity. Anomaly detection also helps identify potential disasters early (e.g., a sudden spike in temperature readings indicating a wildfire risk). This subproblem tackles resource optimization and early warning systems.
+\subsection{Subproblem 4} Scalable Query and Analytics Layer
+Description: Provide a scalable query interface for stakeholders (governments, NGOs, scientists) to access insights (e.g., error rates by region, performance trends, disaster predictions) with low latency, supporting both ad-hoc queries and automated reporting.
+Why This Subproblem?: Stakeholders need to access insights quickly to make informed decisions. The coalition emphasized the need for granularity and speed in delivering insights. This subproblem ensures that processed data is actionable and accessible to all users.
+\subsection{Subproblem 5} Visualization and Alerting for Rapid Response
+Description: Build real-time dashboards and alerting systems to visualize insights (e.g., disaster risk maps, resource usage) and notify stakeholders of critical events (e.g., impending floods, sensor failures), enabling rapid, coordinated responses.
+Why This Subproblem?: The coalition stressed the need for rapid response to mitigate disaster impacts. Visualization and alerting ensure that insights are communicated effectively to stakeholders, enabling timely action to save lives and resources.
+
+\section{Explanation to Stakeholders: Why These Five Subproblems?}
+Let me walk you through why I’ve divided the problem into these five subproblems, addressing the coalition’s concerns and ensuring we deliver a comprehensive solution.
+
+Reason 1: Logical Segmentation of the Data Pipeline
+The problem involves a classic data engineering pipeline: ingestion → processing → analysis → delivery → action. Each subproblem corresponds to a critical stage in this pipeline:
+Subproblem 1 (Ingestion and Storage) ensures we can handle the 5PB daily data volume.
+Subproblem 2 (Processing) transforms raw data into insights.
+Subproblem 3 (Resource Optimization) adds value by addressing resource scarcity.
+Subproblem 4 (Query Layer) makes insights accessible.
+Subproblem 5 (Visualization and Alerting) ensures actionable outcomes.
+Reason 2: Addressing Key Challenges Identified by the Coalition
+The coalition highlighted three main gaps: (1) inability to predict disasters, (2) inefficient resource allocation, and (3) delayed responses. The subproblems directly tackle these:
+Subproblem 2 focuses on prediction through real-time processing and climate model integration.
+Subproblem 3 addresses resource efficiency and early anomaly detection.
+Subproblem 5 ensures rapid response through visualization and alerting.
+Reason 3: Scalability and Modularity
+Dividing the problem into five subproblems allows us to build a modular system where each component can be developed, tested, and scaled independently. For example:
+Subproblem 1 can leverage Amazon’s cloud infrastructure for storage.
+Subproblem 2 can use Google’s AI/ML expertise for predictions.
+Subproblem 5 can integrate Netflix’s streaming analytics for real-time dashboards.
+Reason 4: Stakeholder Needs
+Each subproblem aligns with the needs of different stakeholders:
+Governments and NGOs need Subproblem 4 (query layer) and Subproblem 5 (alerting) for decision-making.
+The scientific community benefits from Subproblem 2 (processing with climate models).
+All stakeholders benefit from Subproblem 3 (resource optimization) for sustainability.
+
+\section{Infrastructure Design: Incorporating Additional Data Engineering Practices}
+Since this is a learning journey, I’ll highlight additional tools and practices that are essential for a world-class data engineering project like CRDP-Net, ensuring we cover aspects you may not yet be familiar with. These practices will help us manage the complexity of a 5PB daily data pipeline and ensure long-term success.
+
+1.1 Additional Data Engineering Practices
+Data Catalog:
+Purpose: A data catalog acts as a centralized metadata repository, making it easy for stakeholders (e.g., scientists, analysts) to discover, understand, and trust the data. It’ll catalog datasets like sensor readings, errors, performance metrics, and maintenance costs, along with their schemas, lineage, and ownership.
+Tool: Use Apache Atlas (integrates well with Kafka, Spark, and Cassandra) to manage metadata.
+Implementation: Catalog all datasets with metadata tags (e.g., “temperature_readings,” “americas_region”), track lineage (e.g., how raw sensor data becomes disaster predictions), and enforce access policies (e.g., NGOs can access regional data but not raw sensor logs).
+Data Governance:
+Purpose: Ensure data quality, security, and compliance with global regulations (e.g., GDPR, CCPA). For example, sensor data might include location information, requiring privacy protections.
+Practices:
+Define data quality rules (e.g., temperature readings must be between -50°C and 70°C).
+Implement role-based access control (RBAC) using Apache Ranger (integrates with Atlas).
+Encrypt data in transit (TLS) and at rest (AES-256).
+Implementation: Set up a governance framework to validate incoming sensor data, anonymize sensitive fields, and audit access.
+Data Lineage:
+Purpose: Track the flow of data from sensors to final insights (e.g., how raw temperature readings become flood predictions). This ensures transparency and helps debug issues.
+Tool: Apache Atlas (already used for the data catalog) provides lineage tracking.
+Implementation: Map the pipeline: Sensors → Kafka → Cassandra → Spark → Presto → Grafana, showing transformations at each step.
+Observability and Monitoring:
+Purpose: Monitor the health of the pipeline (e.g., ingestion rates, processing latency, error rates) to ensure reliability.
+Tools:
+Prometheus for metrics collection (e.g., Kafka throughput, Spark job latency).
+Grafana for dashboards (already planned for visualization, we’ll extend it for system monitoring).
+ELK Stack (Elasticsearch, Logstash, Kibana) for log aggregation and analysis.
+Implementation: Set up alerts for anomalies (e.g., Kafka lag > 1 minute, Spark job failure).
+Testing and Validation:
+Purpose: Ensure the pipeline produces accurate results (e.g., disaster predictions align with climate models).
+Practices:
+Unit tests for Spark transformations (using PyTest).
+End-to-end tests simulating sensor data and verifying outputs.
+Data validation checks (e.g., ensure no null values in critical fields like sensor_id).
+Implementation: Build a testing framework to simulate 1TB of sensor data and validate pipeline outputs.
+Disaster Recovery and Fault Tolerance:
+Purpose: Ensure the system remains operational during failures (e.g., data center outage, sensor malfunction).
+Practices:
+Use Kafka’s replication (replication factor of 3) to prevent data loss.
+Deploy Cassandra with a replication factor of 3 across multiple regions.
+Implement geo-redundancy by hosting data centers in Americas, Europe, and Asia.
+Implementation: Set up failover mechanisms and backup strategies (e.g., daily snapshots to S3 Glacier).
+Edge Computing:
+Purpose: Reduce bandwidth costs by processing data closer to the source (e.g., at the sensor level or regional hubs).
+Tool: Use AWS Greengrass or Azure IoT Edge to perform lightweight processing (e.g., anomaly detection) at the edge.
+Implementation: Aggregate sensor data regionally before sending to Kafka, reducing data volume from 5PB to 2PB daily.
+1.2 Updated Infrastructure Design
+Incorporating these practices, the updated infrastructure includes:
+
+Ingestion: Apache Kafka (16 brokers) with edge computing to reduce data volume.
+Storage: Apache Cassandra (450 nodes), S3 Glacier (1,825PB), with Atlas for metadata.
+Processing: Apache Spark (4,000 CPU cores, 200 GPUs) with testing frameworks.
+Query Layer: Presto with Ranger for access control.
+Visualization/Monitoring: Grafana for dashboards, Prometheus for system metrics, ELK for logs.
+Governance: Atlas for catalog and lineage, Ranger for RBAC, encryption for security.
+
+\end{document}
