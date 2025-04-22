@@ -1,0 +1,19 @@
+@startuml
+entity "SensorReading" {
+  * sensor_id : int
+  --
+  * temperature : float
+  * humidity : float
+  * pressure : float
+  * timestamp : string
+  * region : string
+  * location : Location
+}
+
+entity "Location" {
+  * latitude : float
+  * longitude : float
+}
+
+SensorReading ||--o{ Location
+@enduml

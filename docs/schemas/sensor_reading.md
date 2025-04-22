@@ -19,3 +19,6 @@
     ]}}
   ]
 }
+
+## Diagram
+![Sensor Reading Schema](sensor_reading.png)

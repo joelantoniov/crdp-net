@@ -1,0 +1,14 @@
+@startuml
+entity "sensor_metrics" {
+  * region : text <<PK>>
+  --
+  * timestamp : text <<CK>>
+  --
+  * avg_temperature : float
+  * avg_humidity : float
+  * avg_pressure : float
+  * flood_risk : float
+}
+
+note right: PK = Partition Key\nCK = Clustering Key
+@enduml
