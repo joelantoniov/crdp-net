@@ -1,5 +1,8 @@
 # Sensor Reading Avro Schema
 
+## Diagram
+![Sensor Reading Schema](sensor_reading.png)
+
 ## Schema Definition
 ```json
 {
@@ -19,6 +22,3 @@
     ]}}
   ]
 }
-
-## Diagram
-![Sensor Reading Schema](sensor_reading.png)

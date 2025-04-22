@@ -1,5 +1,8 @@
 # Sensor Metrics Cassandra Schema
 
+## Diagram
+![Sensor Metrics Schema](sensor_metrics.png)
+
 ## Schema Definition
 ```sql
 CREATE KEYSPACE IF NOT EXISTS crdp
@@ -16,6 +19,3 @@ CREATE TABLE IF NOT EXISTS sensor_metrics (
     flood_risk float,
     PRIMARY KEY (region, timestamp)
 ) WITH CLUSTERING ORDER BY (timestamp DESC);
-
-## Diagram
-![Sensor Metrics Schema](sensor_metrics.png)
