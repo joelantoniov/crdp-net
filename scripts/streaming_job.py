@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, window, avg, lit
-from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType
+from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType, DoubleType
 
 # Initialize Spark session
 spark = SparkSession.builder \
@@ -50,6 +50,27 @@ aggregates = df.withWatermark("timestamp", "10 minutes") \
 aggregates = aggregates.withColumn("hour", col("window.start").cast("string").substr(1, 13)) \
                        .withColumn("timestamp", col("window.start").cast("string")) \
                        .drop("window")
+
+# UDF to predict flood risk
+def predict_flood_risk(temp, hum, press, region, timestamp):
+    rainfall = get_rainfall(region, timestamp)
+    features = np.array([[temp, hum, press, rainfall]])
+    prediction = broadcast_model.value.predict_proba(features)[0][1]  # Probability of flood
+    return float(prediction)
+
+predict_udf = udf(predict_flood_risk, DoubleType())
+
+# Add flood risk prediction
+aggregates = aggregates.withColumn(
+    "flood_risk",
+    predict_udf(
+        col("avg_temperature"),
+        col("avg_humidity"),
+        col("avg_pressure"),
+        col("region"),
+        col("timestamp")
+    )
+)
 
 # Write to Cassandra
 query = aggregates.writeStream \
